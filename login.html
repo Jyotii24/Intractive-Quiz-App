@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #69c4db; /* Light background color */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 350px;
+            background: #007BFF; /* Primary Blue Color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px #66b2ff; /* Light Blue Shade */
+        }
+
+        h2 {
+            color: white;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+
+        .form-group {
+            width: 100%;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group input {
+            width: 100%;
+            height: 50px;
+            background: transparent;
+            border: 2px solid #66b2ff; /* Light Blue Border */
+            border-radius: 25px;
+            outline: none;
+            font-size: 1em;
+            color: #fff;
+            padding-left: 50px;
+        }
+
+        .form-group label {
+            position: absolute;
+            top: 50%;
+            left: 50px;
+            transform: translateY(-50%);
+            font-size: 1em;
+            color: #fff;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        .form-group img {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            width: 25px;
+            height: 25px;
+        }
+
+        .form-group input:focus ~ label,
+        .form-group input:valid ~ label {
+            top: -10px;
+            left: 40px;
+            font-size: 0.8em;
+            color: #66b2ff; /* Light Blue Shade */
+        }
+
+        button {
+            width: 100%;
+            height: 50px;
+            border-radius: 25px;
+            border: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            cursor: pointer;
+            background-color: #0056b3; /* Dark Blue Shade */
+            color: white;
+            transition: 0.5s;
+        }
+
+        button:hover {
+            background-color: #66b2ff; /* Light Blue Shade on Hover */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 1.5em;
+            }
+            .form-group input {
+                font-size: 0.9em;
+            }
+            .form-group label {
+                font-size: 0.9em;
+            }
+            .form-group img {
+                width: 20px;
+                height: 20px;
+            }
+            button {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                padding: 15px;
+                border-radius: 15px;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+            .form-group input {
+                height: 40px;
+                font-size: 0.8em;
+            }
+            .form-group label {
+                font-size: 0.8em;
+            }
+            .form-group img {
+                width: 15px;
+                height: 15px;
+            }
+            button {
+                height: 40px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <input type="text" id="username" required>
+                <label for="username">Username</label>
+                <img src="img/username.png" alt="Username Icon">
+            </div>
+            <div class="form-group">
+                <input type="text" id="phone-number" required>
+                <label for="phone-number">Phone Number</label>
+                <img src="img/call.png" alt="Phone Icon">
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" required>
+                <label for="email">Email</label>
+                <img src="img/envelop.png" alt="Email Icon">
+            </div>
+            <button type="button" id="next-btn">Next</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('next-btn').addEventListener('click', function() {
+            window.location.href = 'index1.html';
+        });
+    </script>
+</body>
+</html>

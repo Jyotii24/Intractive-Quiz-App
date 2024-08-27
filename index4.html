@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #007BFF;
+        }
+        
+        .result {
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            color: #333;
+        }
+        
+        .questions {
+            margin-top: 20px;
+        }
+        
+        .question {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+        
+        .question h3 {
+            font-size: 1.2em;
+            margin: 0;
+            color: #333;
+        }
+        
+        .question p {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        li {
+            padding: 5px 0;
+        }
+        
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+        
+        .back-button {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Results</h1>
+        <div class="result">
+            <h2>Your Score: <span id="score">0</span>/100</h2>
+            <div class="questions">
+                <div class="question">
+                    <h3>Question 1:</h3>
+                    <p>What is JavaScript primarily used for?</p>
+                    <ul>
+                        <li>A) Backend development</li>
+                        <li>B) Styling web pages</li>
+                        <li>C) Structuring web pages</li>
+                        <li class="correct">D) Adding interactivity to web pages</li>
+                    </ul>
+                </div>
+                <div class="question">
+                    <h3>Question 2:</h3>
+                    <p>Which of the following is the correct way to declare a variable in JavaScript?</p>
+                    <ul>
+                        <li class="correct">A) var myVar;</li>
+                        <li>B) variable myVar;</li>
+                        <li>C) let myVar;</li>
+                        <li>D) declare myVar;</li>
+                    </ul>
+                </div>
+                <div class="question">
+                    <h3>Question 3:</h3>
+                    <p>How do you create a function in JavaScript?</p>
+                    <ul>
+                        <li class="correct">A) function myFunction() { }</li>
+                        <li>B) def myFunction() { }</li>
+                        <li>C) function:myFunction { }</li>
+                        <li>D) func myFunction() { }</li>
+                    </ul>
+                </div>
+                <div class="question">
+                    <h3>Question 4:</h3>
+                    <p>What is the result of 2 + '2' in JavaScript?</p>
+                    <ul>
+                        <li>A) 4</li>
+                        <li class="correct">B) 22</li>
+                        <li>C) NaN</li>
+                        <li>D) undefined</li>
+                    </ul>
+                </div>
+                <div class="question">
+                    <h3>Question 5:</h3>
+                    <p>Which method is used to remove the last element from an array in JavaScript?</p>
+                    <ul>
+                        <li class="correct">A) pop()</li>
+                        <li>B) shift()</li>
+                        <li>C) remove()</li>
+                        <li>D) delete()</li>
+                    </ul>
+                </div>
+                <div class="question">
+                    <h3>Question 6:</h3>
+                    <p>Which keyword is used to check if a property exists in an object?</p>
+                    <ul>
+                        <li class="correct">A) in</li>
+                        <li>B) has</li>
+                        <li>C) exists</li>
+                        <li>D) contains</li>
+                    </ul>
+                </div>
+                <div class="question">
+                    <h3>Question 7:</h3>
+                    <p>Which of the following is not a primitive data type in JavaScript?</p>
+                    <ul>
+                        <li>A) String</li>
+                        <li>B) Boolean</li>
+                        <li>C) Number</li>
+                        <li class="correct">D) Object</li>
+                    </ul>
+                </div>
+                <div class="question">
+                    <h3>Question 8:</h3>
+                    <p>How do you write a comment in JavaScript?</p>
+                    <ul>
+                        <li><!-- This is a comment --></li>
+                        <li class="correct">// This is a comment</li>
+                        <li>/* This is a comment */</li>
+                        <li># This is a comment</li>
+                    </ul>
+                </div>
+                <div class="question">
+                    <h3>Question 9:</h3>
+                    <p>What does the typeof operator return for an array?</p>
+                    <ul>
+                        <li>A) array</li>
+                        <li class="correct">B) object</li>
+                        <li>C) list</li>
+                        <li>D) collection</li>
+                    </ul>
+                </div>
+                <div class="question">
+                    <h3>Question 10:</h3>
+                    <p>Which of the following methods is used to add an element to the beginning of an array?</p>
+                    <ul>
+                        <li>A) push()</li>
+                        <li class="correct">B) unshift()</li>
+                        <li>C) concat()</li>
+                        <li>D) append()</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <a href="index.html" class="back-button">Go Back</a>
+    </div>
+    <script src="script.js">
+        document.addEventListener('DOMContentLoaded', () => {
+            // Example score. This can be dynamically set based on user performance.
+            const userScore = 85; // Replace this with the score you want to display
+        
+            // Get the score element
+            const scoreElement = document.getElementById('score');
+        
+            // Update the score element with the user's score
+            scoreElement.textContent = userScore;
+        });
+    </script>
+</body>
+</html>

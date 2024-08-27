@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Instruction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20211001/pngtree-background-xanh-%C4%91%E1%BA%B9p-image_908804.png");
+            background-size: cover;
+            background-position: center;
+            color: #e0e0e0; /* Light gray for text */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .quiz-container {
+            background-color: rgba(20, 20, 20, 0.8); /* Slightly lighter transparent black */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        #instruction h2 {
+            margin-top: 0;
+            color: #ffcc00; /* Bright yellow for headings */
+            font-size: 26px;
+            text-align: center;
+        }
+
+        #instruction p {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+        }
+
+        #instruction ul {
+            list-style-type: none;
+            padding: 0;
+            font-size: 16px;
+            color: #f7f7f7;
+        }
+
+        #instruction ul li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        #instruction ul li::before {
+            content: '✔';
+            color: #ffcc00; /* Bright yellow for check marks */
+            position: absolute;
+            left: 0;
+            font-size: 18px;
+        }
+
+        #buttonContainer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        #exitBtn,
+        #startBtn {
+            background-color: #ffcc00; /* Bright yellow buttons */
+            color: #333; /* Dark gray text */
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+
+        #exitBtn:hover,
+        #startBtn:hover {
+            background: linear-gradient(to right, #ffcc00, #ff9900); /* Yellow to orange gradient on hover */
+            transform: scale(1.05); /* Slightly larger on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div id="instruction">
+            <h2>Quiz Instructions</h2>
+            <p>Welcome to the quiz! Here are the instructions:</p>
+            <ul>
+                <li>Each question has four possible answers.</li>
+                <li>Select the answer you think is correct.</li>
+                <li>You will receive your score at the end of the quiz.</li>
+                <li>Good luck and have fun!</li>
+            </ul>
+            <div id="buttonContainer">
+                <a href="index.html"><button id="exitBtn">Exit</button></a>
+                <a href="try2.html"><button id="startBtn">Start Quiz</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

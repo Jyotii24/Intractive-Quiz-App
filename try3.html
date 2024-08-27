@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Review</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+        }
+        .review-container {
+            padding: 1rem;
+            max-width: 60%;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+        header {
+            padding: 20px;
+            font-size: 2rem;
+            color: rgb(67, 158, 186);
+            text-align: center;
+            font-weight: bold;
+        }
+        .question-box {
+            background-color: #e6f7ff; /* Light Blue */
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid rgb(129, 191, 170);
+            box-shadow: 0 0 5px rgba(13, 4, 4, 0.1);
+        }
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        .options {
+            margin: 0;
+            padding: 0;
+        }
+        .answer-option {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .answer-option.correct {
+            background-color: #b9ec89; /* Light Green */
+            color: #061706;
+        }
+        .answer-option.incorrect {
+            background-color: #f8d7da; /* Light Red */
+            color: #e21e32;
+        }
+        .summary {
+            font-size: 1.2rem;
+            text-align: start;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 2px solid rgb(148, 201, 141);
+            background-color: rgb(57, 206, 92);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .navigation {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        #retake-btn {
+            background-color: #007bff;
+            color: #fff;
+        }
+        #back-to-quiz-btn {
+            background-color: #1e4727;
+            color: #fff;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            header {
+                font-size: 1.5rem;
+                padding: 10px;
+            }
+            .question-box {
+                padding: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
+            .question {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+            .answer-option {
+                font-size: 0.9rem;
+            }
+            .summary {
+                font-size: 1rem;
+                padding: 0.5rem;
+            }
+            button {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            header {
+                font-size: 1.2rem;
+                padding: 5px;
+            }
+            .question-box {
+                padding: 0.5rem;
+                margin-bottom: 0.3rem;
+            }
+            .question {
+                font-size: 0.9rem;
+                margin-bottom: 0.3rem;
+            }
+            .answer-option {
+                font-size: 0.8rem;
+            }
+            .summary {
+                font-size: 0.9rem;
+                padding: 0.5rem;
+            }
+            button {
+                padding: 0.4rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="review-container">
+        <header>Re-View</header>
+
+        <div id="summary" class="summary"></div>
+        <div id="review-questions"></div>
+        <div class="navigation">
+            <a href="try2.html"><button id="retake-btn">Retake the Test</button></a>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "1. What is JavaScript primarily used for?",
+                options: ["A. Backend development", "B. Styling web pages", "C. Structuring web pages", "D. Adding interactivity to web pages"],
+                correctAnswer: 3
+            },
+            {
+                question: "2. Which of the following is the correct way to declare a variable in JavaScript?",
+                options: ["A. var myVar;", "B. variable myVar;", "C. let myVar;", "D. declare myVar;"],
+                correctAnswer: 0
+            },
+            {
+                question: "3. How do you create a function in JavaScript?",
+                options: ["A. function myFunction() { }", "B. def myFunction() { }", "C. function:myFunction { }", "D. func myFunction() { }"],
+                correctAnswer: 0
+            },
+            {
+                question: "4. What is the result of 2 + '2' in JavaScript?",
+                options: ["A. 4", "B. 22", "C. NaN", "D. undefined"],
+                correctAnswer: 1
+            },
+            {
+                question: "5. Which method is used to remove the last element from an array in JavaScript?",
+                options: ["A. pop()", "B. shift()", "C. remove()", "D. delete()"],
+                correctAnswer: 0
+            },
+            {
+                question: "6. Which keyword is used to check if a property exists in an object?",
+                options: ["A. in", "B. has", "C. exists", "D. contains"],
+                correctAnswer: 0
+            },
+            {
+                question: "7. Which of the following is not a primitive data type in JavaScript?",
+                options: ["A. String", "B. Boolean", "C. Number", "D. Object"],
+                correctAnswer: 3
+            },
+            {
+                question: "8. How do you write a comment in JavaScript?",
+                options: ["A. <--This is a comment-->", "B. // This is a comment", "C. /* This is a comment */", "D. # This is a comment"],
+                correctAnswer: 1
+            },
+            {
+                question: "9. What does the typeof operator return for an array?",
+                options: ["A. array", "B. object", "C. list", "D. collection"],
+                correctAnswer: 1
+            },
+            {
+                question: "10. Which of the following methods is used to add an element to the beginning of an array?",
+                options: ["A. push()", "B. unshift()", "C. concat()", "D. append()"],
+                correctAnswer: 1
+            }
+        ];
+
+        const userAnswers = JSON.parse(sessionStorage.getItem('userAnswers')) || {};
+
+        function displayReview() {
+            let correctCount = 0;
+            const reviewContainer = document.getElementById('review-questions');
+            reviewContainer.innerHTML = '';
+
+            questions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = parseInt(userAnswer) === question.correctAnswer;
+                if (isCorrect) correctCount++;
+
+                reviewContainer.innerHTML += `
+                    <div class="question-box">
+                        <div class="question">${question.question}</div>
+                        <div class="options">
+                            ${question.options.map((option, i) => `
+                                <div class="answer-option ${i === question.correctAnswer ? 'correct' : (i == userAnswer ? 'incorrect' : '')}">
+                                    ${option} ${i === question.correctAnswer ? '(Correct Answer)' : (i == userAnswer ? '(Your Answer)' : '')}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            const score = Math.round((correctCount / questions.length) * 100);
+            document.getElementById('summary').textContent = `You scored ${correctCount} out of ${questions.length} (${score}%)`;
+        }
+
+        document.getElementById('retake-btn').addEventListener('click', () => {
+            sessionStorage.clear();
+            window.location.href = 'try2.html'; // Ensure this page exists
+        });
+
+        displayReview();
+    </script>
+</body>
+</html>

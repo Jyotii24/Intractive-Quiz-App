@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <style>
+        body {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-image: url("https://hips.hearstapps.com/hmg-prod/images/question-mark-symbol-over-blue-background-royalty-free-image-1581076479.jpg?crop=0.748xw:1.00xh;0.173xw,0&resize=640:*");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        header {
+            background-color: rgba(0, 51, 102, 0.85);
+            padding: 20px;
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .quiz-container {
+            padding: 30px;
+            max-width: 50%;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .options {
+            margin-bottom: 1rem;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .answer-option {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .answer-option input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 0 0.5rem;
+            margin-top: 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            background: linear-gradient(to right, #1e90ff, #124a8e);
+            color: #fff;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #1e90ff, #132c86);
+            transform: scale(1.05);
+        }
+
+        #submit-btn {
+            background: linear-gradient(to right, #1e90ff, #1e3a96);
+        }
+
+        #timer {
+            text-align: right;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        
+
+        #timer img {
+            margin-right: 0.5rem;
+        }
+
+        .question-numbers {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .question-number {
+            margin: 0 0.5rem;
+        }
+
+        .question-number input[type="radio"] {
+            display: none;
+        }
+
+        .question-number label {
+            padding: 5px;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background-color: #ddd;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .question-number input[type="radio"]:checked + label {
+            background-color: #1e90ff;
+        }
+
+        .question-number.answered label {
+            background-color: rgb(38, 70, 159);
+        }
+
+        #question {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 15px;
+                margin: 15px auto;
+            }
+
+            header {
+                font-size: 20px;
+                padding: 15px;
+            }
+
+            .question {
+                font-size: 1rem;
+            }
+
+            button {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            #timer {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quiz-container {
+                padding: 10px;
+                margin: 10px auto;
+            }
+
+            header {
+                font-size: 18px;
+                padding: 10px;
+            }
+
+            .question {
+                font-size: 0.9rem;
+            }
+
+            button {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            #timer {
+                font-size: 0.9rem;
+            }
+
+            .question-numbers {
+                justify-content: space-around;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>JavaScript</header>
+    <div class="quiz-container">
+        <div id="timer">
+            <img src="img/clock.png" alt="Clock Icon" width="24" height="24">
+            <span id="time-remaining">30:00</span>
+        </div>
+        <div class="question-numbers">
+            <!-- Question numbers will be generated dynamically here -->
+        </div>
+        <div id="question" class="question"></div>
+        <div id="options" class="options"></div>
+        <div class="navigation">
+            <button id="prev-btn">Previous</button>
+            <button id="next-btn">Next</button>
+            <a href="try3.html"><button id="submit-btn" style="display: none;">Submit</button></a>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+    {
+        question: "1. What is JavaScript primarily used for?",
+        options: ["A) Backend development", "B) Styling web pages", "C) Structuring web pages", "D) Adding interactivity to web pages"],
+        correctAnswer: 3
+    },
+    {
+        question: "2. Which of the following is the correct way to declare a variable in JavaScript?",
+        options: ["A) var myVar;", "B) variable myVar;", "C) let myVar;", "D) declare myVar;"],
+        correctAnswer: 0
+    },
+    {
+        question: "3. How do you create a function in JavaScript?",
+        options: ["A) function myFunction() { }", "B) def myFunction() { }", "C) function:myFunction { }", "D) func myFunction() { }"],
+        correctAnswer: 0
+    },
+    {
+        question: "4. What is the result of 2 + '2' in JavaScript?",
+        options: ["A) 4", "B) 22", "C) NaN", "D) undefined"],
+        correctAnswer: 1
+    },
+    {
+        question: "5. Which method is used to remove the last element from an array in JavaScript?",
+        options: ["A) pop()", "B) shift()", "C) remove()", "D) delete()"],
+        correctAnswer: 0
+    },
+    {
+        question: "6. Which keyword is used to check if a property exists in an object?",
+        options: ["A) in", "B) has", "C) exists", "D) contains"],
+        correctAnswer: 0
+    },
+    {
+        question: "7. Which of the following is not a primitive data type in JavaScript?",
+        options: ["A) String", "B) Boolean", "C) Number", "D) Object"],
+        correctAnswer: 3
+    },
+    {
+        question: "8. How do you write a comment in JavaScript?",
+        options: ["A) <--This is a comment-->", "B) // This is a comment", "C) /* This is a comment */", "D) # This is a comment"],
+        correctAnswer: 1
+    },
+    {
+        question: "9. What does the typeof operator return for an array?",
+        options: ["A) array", "B) object", "C) list", "D) collection"],
+        correctAnswer: 1
+    },
+    {
+        question: "10. Which of the following methods is used to add an element to the beginning of an array?",
+        options: ["A) push()", "B) unshift()", "C) concat()", "D) append()"],
+        correctAnswer: 1
+    }
+];
+     
+
+        let userAnswers = {}; // Start with an empty object to clear previous answers
+        let currentQuestionIndex = 0;
+        let timeRemaining = 900; // 30 minutes in seconds
+
+        function loadQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById('question').textContent = question.question;
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            for (const [key, value] of Object.entries(question.options)) {
+                optionsContainer.innerHTML += `
+                    <div class="answer-option">
+                        <input type="radio" name="option" value="${key}" id="${key}" ${userAnswers[currentQuestionIndex] === key ? 'checked' : ''}>
+                        <label for="${key}">${value}</label>
+                    </div>
+                `;
+            }
+            updateNavigationButtons();
+            highlightQuestionNumber();
+        }
+
+        function updateNavigationButtons() {
+            document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
+            document.getElementById('next-btn').disabled = currentQuestionIndex === questions.length - 1;
+            document.getElementById('submit-btn').style.display = currentQuestionIndex === questions.length - 1 ? 'inline-block' : 'none';
+        }
+
+        function saveAnswer() {
+            const selectedOption = document.querySelector('input[name="option"]:checked');
+            if (selectedOption) {
+                userAnswers[currentQuestionIndex] = selectedOption.value;
+            } else {
+                userAnswers[currentQuestionIndex] = null; // No answer selected
+            }
+            highlightAnsweredQuestions();
+        }
+
+        function highlightQuestionNumber() {
+            const questionNumbers = document.querySelectorAll('.question-number input[type="radio"]');
+            questionNumbers.forEach((input, index) => {
+                const parentDiv = input.closest('.question-number');
+                if (index === currentQuestionIndex) {
+                    input.checked = true;
+                }
+                if (userAnswers[index]) {
+                    parentDiv.classList.add('answered');
+                } else {
+                    parentDiv.classList.remove('answered');
+                }
+            });
+        }
+
+        function highlightAnsweredQuestions() {
+            const questionNumbers = document.querySelectorAll('.question-number input[type="radio"]');
+            questionNumbers.forEach((input, index) => {
+                const parentDiv = input.closest('.question-number');
+                if (userAnswers[index]) {
+                    parentDiv.classList.add('answered');
+                } else {
+                    parentDiv.classList.remove('answered');
+                }
+            });
+        }
+
+        function loadQuestionNumbers() {
+            const questionNumbersContainer = document.querySelector('.question-numbers');
+            questionNumbersContainer.innerHTML = '';
+            questions.forEach((_, index) => {
+                questionNumbersContainer.innerHTML += `
+                    <div class="question-number">
+                        <input type="radio" name="question-number" id="q${index}" value="${index}">
+                        <label for="q${index}">${index + 1}</label>
+                    </div>
+                `;
+            });
+            document.querySelectorAll('.question-number input[type="radio"]').forEach((input) => {
+                input.addEventListener('click', () => {
+                    saveAnswer();
+                    currentQuestionIndex = parseInt(input.value);
+                    loadQuestion();
+                });
+            });
+            highlightQuestionNumber();
+        }
+
+        function startTimer() {
+            const timerElement = document.getElementById('time-remaining');
+            const timerInterval = setInterval(() => {
+                timeRemaining--;
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function submitQuiz() {
+            saveAnswer();
+            sessionStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+            window.location.href = 'review.html';
+        }
+
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            saveAnswer();
+            currentQuestionIndex--;
+            loadQuestion();
+        });
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            saveAnswer();
+            currentQuestionIndex++;
+            loadQuestion();
+        });
+
+        document.getElementById('submit-btn').addEventListener('click', submitQuiz);
+
+        loadQuestionNumbers();
+        loadQuestion();
+        startTimer();
+    </script>
+</body>
+</html>
